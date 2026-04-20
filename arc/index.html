@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Arc Puzzle</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">Arc Puzzle</div>
+            <div class="card-subtitle">Study the examples, then complete the answer grid.</div>
+        </div>
+
+        <div id="puzzle">
+            <div id="controls">
+                <div class="btn-group" id="colour-btns">
+                    <button data-n="2" class="active">1 colour</button>
+                    <button data-n="3">2 colours</button>
+                    <button data-n="4">3 colours</button>
+                    <button data-n="5">4 colours</button>
+                </div>
+                <div class="colour-picker" id="colour-picker"></div>
+                <button id="check-btn">Check</button>
+                <div id="result"></div>
+            </div>
+
+            <div class="example" id="example-1">
+                <span class="row-label">Example 1</span>
+                <div class="grid before"></div>
+                <span class="arrow">→</span>
+                <div class="grid after"></div>
+            </div>
+            <div class="example" id="example-2">
+                <span class="row-label">Example 2</span>
+                <div class="grid before"></div>
+                <span class="arrow">→</span>
+                <div class="grid after"></div>
+            </div>
+            <div class="answer-row" id="answer">
+                <span class="row-label">Answer</span>
+                <div class="grid before"></div>
+                <span class="arrow">→</span>
+                <div class="grid after editable-grid"></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
