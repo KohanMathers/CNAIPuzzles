@@ -15,7 +15,13 @@
             <div class="card-subtitle">Study the examples, then complete the answer grid.</div>
         </div>
 
-        <div id="puzzle">
+        <div id="menu">
+            <button id="start-btn">Start Puzzle</button>
+            <button id="infinite-btn">Infinite Mode</button>
+            <button id="htp-btn">How to Play</button>
+        </div>
+
+        <div id="puzzle" style="display: none;">
             <div id="controls">
                 <div class="btn-group" id="colour-btns">
                     <button data-n="2" class="active">1 colour</button>
@@ -47,8 +53,32 @@
                 <div class="grid after editable-grid"></div>
             </div>
         </div>
+
+        <div id="htp" style="display: none;">
+            <h2>How to Play</h2>
+            <p>In this puzzle, you are given two examples of a transformation applied to a grid of coloured cells. Your
+                task is to determine the rule governing the transformation and apply it to the answer grid.</p>
+            <br>
+            <p>Each example consists of a "before" grid and an "after" grid. The "before" grid shows the initial
+                configuration of coloured cells, while the "after" grid shows the result of applying the transformation.
+            </p>
+            <br>
+            <p>To solve the puzzle, carefully analyze the changes between the "before" and "after" grids in both
+                examples. Look for how the "before" grid has been transformed. Once you think you've
+                identified the rule, apply it to the "before" grid in the answer row to fill in the "after" grid.</p>
+            <br>
+            <p>Use the colour picker to choose which colours to use, and click a cell in the "after" grid to fill it.
+                When you're ready, click the "Check" button to see if your answer
+                is correct!</p>
+            <br>
+            <p>Good luck, and have fun solving the Arc Puzzle!</p>
+            <br>
+            <button id="back-btn">Back to Menu</button>
+        </div>
+
     </div>
-    <script src="script.js"></script>
+    <script src="onload.js"></script>
+    <script src="puzzle.js"></script>
 </body>
 
 </html>

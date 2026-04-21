@@ -11,6 +11,11 @@ let colourNum = 2;
 let answerAfterGrid = null;
 let userGrid = null;
 
+let gameMode = null;
+const START_SEQUENCE = [2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5];
+let startIndex = 0;
+let checkLocked = false;
+
 function randomColours(grid, n, maxNonZero = 6) {
     const rows = grid.length;
     const cols = grid[0].length;
@@ -71,6 +76,7 @@ function renderEditableGrid(grid, el) {
             cell.className = 'cell editable';
             cell.style.background = COLOURS[val] ?? COLOURS[0];
             cell.addEventListener('click', () => {
+                if (checkLocked) return;
                 userGrid[r][c] = selectedColour;
                 cell.style.background = COLOURS[selectedColour];
                 hideResult();
@@ -106,19 +112,17 @@ function hideResult() {
     result.style.display = 'none';
 }
 
-function checkAnswer() {
-    const flat = userGrid.flat();
-    const correct = answerAfterGrid.flat();
-    const ok = flat.every((v, i) => v === correct[i]);
-
+function showResult(text, className) {
     const result = document.getElementById('result');
     result.style.display = 'inline-block';
-    result.className = ok ? 'correct' : 'wrong';
-    result.textContent = ok ? 'Correct!' : 'Not quite — try again';
+    result.className = className;
+    result.textContent = text;
 }
 
-function startPuzzle() {
+function loadPuzzle(n) {
+    colourNum = n;
     hideResult();
+    checkLocked = false;
 
     const rule = RULES[Math.floor(Math.random() * RULES.length)];
     const ex1 = generateLevel(colourNum, rule);
@@ -135,11 +139,60 @@ function startPuzzle() {
     renderGrid(ans.before, document.querySelector('#answer .before'));
     renderEditableGrid(userGrid, document.querySelector('#answer .editable-grid'));
 
-    console.log(ex1.before.flat(), ex1.after.flat());
-    console.log(ex2.before.flat(), ex2.after.flat());
-    console.log(ans.before.flat(), ans.after.flat());
-
     buildColourPicker(colourNum);
+}
+
+function startPuzzleMode() {
+    gameMode = 'start';
+    startIndex = 0;
+
+    document.getElementById('colour-btns').style.display = 'none';
+
+    loadPuzzle(START_SEQUENCE[startIndex]);
+}
+
+function startInfiniteMode() {
+    gameMode = 'infinite';
+
+    document.getElementById('colour-btns').style.display = 'flex';
+
+    document.querySelectorAll('#colour-btns button').forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.dataset.n) === colourNum);
+    });
+
+    loadPuzzle(colourNum);
+}
+
+function checkAnswer() {
+    if (checkLocked) return;
+
+    const flat = userGrid.flat();
+    const correct = answerAfterGrid.flat();
+    const ok = flat.every((v, i) => v === correct[i]);
+
+    if (!ok) {
+        showResult('Not quite — try again', 'wrong');
+        return;
+    }
+
+    checkLocked = true;
+
+    if (gameMode === 'start') {
+        startIndex++;
+        if (startIndex >= START_SEQUENCE.length) {
+            showResult('Sequence complete! Well done!', 'correct');
+            setTimeout(() => {
+                document.getElementById('puzzle').style.display = 'none';
+                document.getElementById('menu').style.display = 'flex';
+            }, 2000);
+        } else {
+            showResult('Correct!', 'correct');
+            setTimeout(() => loadPuzzle(START_SEQUENCE[startIndex]), 2000);
+        }
+    } else {
+        showResult('Correct!', 'correct');
+        setTimeout(() => loadPuzzle(colourNum), 2000);
+    }
 }
 
 document.querySelectorAll('#colour-btns button').forEach(btn => {
@@ -147,10 +200,11 @@ document.querySelectorAll('#colour-btns button').forEach(btn => {
         colourNum = parseInt(btn.dataset.n);
         document.querySelectorAll('#colour-btns button').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        startPuzzle();
+        loadPuzzle(colourNum);
     });
 });
 
 document.getElementById('check-btn').addEventListener('click', checkAnswer);
 
-startPuzzle();
+window.startPuzzleMode = startPuzzleMode;
+window.startInfiniteMode = startInfiniteMode;
