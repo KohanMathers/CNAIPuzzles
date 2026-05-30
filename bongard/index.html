@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Bongard Puzzle</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">Bongard Puzzle</div>
+            <div class="card-subtitle">Study the examples, then complete the sentence.</div>
+        </div>
+
+        <div id="menu">
+            <button id="start-btn">Start Puzzle</button>
+            <button id="infinite-btn">Infinite Mode</button>
+            <button id="htp-btn">How to Play</button>
+        </div>
+
+        <div id="puzzle" style="display: none;">
+            <div id="controls">
+                <div id="controls-top-row">
+                    <div class="btn-group" id="difficulty-btns">
+                        <button data-difficulty="easy" class="active">Easy</button>
+                        <button data-difficulty="medium">Medium</button>
+                        <button data-difficulty="difficult">Difficult</button>
+                        <button data-difficulty="extra-hard">Extra Hard</button>
+                    </div>
+                    <button id="check-btn">Check</button>
+                </div>
+                <div class="controls-note">Look at the examples on both sides, then finish the rule.</div>
+                <div id="result"></div>
+            </div>
+
+            <div class="example" id="example-1">
+                <span class="row-label">Example 1</span>
+                <div class="comparison">
+                    <div class="gallery left"></div>
+                    <span class="arrow">↔</span>
+                    <div class="gallery right"></div>
+                </div>
+            </div>
+
+            <div class="example" id="example-2">
+                <span class="row-label">Example 2</span>
+                <div class="comparison">
+                    <div class="gallery left"></div>
+                    <span class="arrow">↔</span>
+                    <div class="gallery right"></div>
+                </div>
+            </div>
+
+            <div class="answer-row" id="answer">
+                <span class="row-label">Answer</span>
+                <div class="sentence-answer">
+                    <span>Left has</span>
+                    <select id="left-select"></select>
+                    <span>, while right has</span>
+                    <select id="right-select"></select>
+                    <span>.</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="htp" style="display: none;">
+            <h2>How to Play</h2>
+            <p>This puzzle shows Bongard-style examples split into a left class and a right class. Each side follows a
+                hidden rule.</p>
+            <br>
+            <p>Study the examples and look for the shared pattern on each side. The answer is a sentence that describes
+                the left class and the right class.</p>
+            <br>
+            <p>Use the dropdowns to complete the sentence at the bottom. Then press Check.</p>
+            <br>
+            <p>Start mode moves through easy, medium, difficult, and extra hard problems in sequence. Infinite mode
+                lets you pick the difficulty yourself.</p>
+            <br>
+            <button id="back-btn">Back to Menu</button>
+        </div>
+    </div>
+
+    <script src="onload.js"></script>
+    <script src="puzzle.js"></script>
+</body>
+
+</html>
