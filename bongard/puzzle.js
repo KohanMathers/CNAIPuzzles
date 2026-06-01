@@ -314,7 +314,7 @@ const LABELS = {
 
     mixed_circles_triangles: {
         text: 'circles and triangles',
-        group: 'Medium',
+        group: 'Easy',
         makeScene(rng) {
             return pairScene(
                 'circle',
@@ -331,6 +331,18 @@ const LABELS = {
             return pairScene(
                 'square',
                 'circle',
+                { x: 35 + jitter(rng, 3), y: 50 + jitter(rng, 3), size: 22 + jitter(rng, 2) },
+                { x: 66 + jitter(rng, 3), y: 50 + jitter(rng, 3), size: 22 + jitter(rng, 2) },
+            );
+        },
+    },
+    mixed_squares_triangles: {
+        text: 'squares and triangles',
+        group: 'Medium',
+        makeScene(rng) {
+            return pairScene(
+                'square',
+                'triangle',
                 { x: 35 + jitter(rng, 3), y: 50 + jitter(rng, 3), size: 22 + jitter(rng, 2) },
                 { x: 66 + jitter(rng, 3), y: 50 + jitter(rng, 3), size: 22 + jitter(rng, 2) },
             );
@@ -820,7 +832,7 @@ const RULES = {
         { left: 'symmetric_lr', right: 'asymmetric' },
     ],
     medium: [
-        { left: 'mixed_circles_triangles', right: 'mixed_squares_circles' },
+        { left: 'mixed_squares_triangles', right: 'mixed_squares_circles' },
         { left: 'one_big_one_small', right: 'two_equal_sizes' },
         { left: 'largest_above_smallest', right: 'largest_below_smallest' },
         { left: 'left_half_only', right: 'right_half_only' },

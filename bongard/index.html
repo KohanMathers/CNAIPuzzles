@@ -30,7 +30,6 @@
                         <button data-difficulty="difficult">Difficult</button>
                         <button data-difficulty="extra-hard">Extra Hard</button>
                     </div>
-                    <button id="check-btn">Check</button>
                 </div>
                 <div class="controls-note">Look at the examples on both sides, then finish the rule.</div>
                 <div id="result"></div>
@@ -56,14 +55,21 @@
 
             <div class="answer-row" id="answer">
                 <span class="row-label">Answer</span>
-                <div class="sentence-answer">
-                    <span>Left has</span>
-                    <select id="left-select"></select>
-                    <span>, while right has</span>
-                    <select id="right-select"></select>
-                    <span>.</span>
+                <div class="answer-content">
+                    <div class="sentence-answer">
+                        <span>Left has</span>
+                        <select id="left-select"></select>
+                        <span>, while right has</span>
+                        <select id="right-select"></select>
+                        <span>.</span>
+                    </div>
+                    <div>
+                        <button id="check-btn">Check</button>
+                    </div>
                 </div>
             </div>
+
+
         </div>
 
         <div id="htp" style="display: none;">
