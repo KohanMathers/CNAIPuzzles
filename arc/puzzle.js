@@ -1,9 +1,9 @@
 const COLOURS = {
-    0: '#e5e7eb',
-    1: '#ef3e40',
-    2: '#4673b9',
-    3: '#eabb5c',
-    4: '#a7c839',
+    0: '#332c58',
+    1: '#ff8c7a',
+    2: '#63b4ff',
+    3: '#ffd166',
+    4: '#7cd9a6',
 };
 
 let selectedColour = 1;
@@ -146,7 +146,7 @@ function startPuzzleMode() {
     gameMode = 'start';
     startIndex = 0;
 
-    document.getElementById('colour-btns').style.display = 'none';
+    document.querySelector('.toolbar').style.display = 'none';
 
     loadPuzzle(START_SEQUENCE[startIndex]);
 }
@@ -154,7 +154,7 @@ function startPuzzleMode() {
 function startInfiniteMode() {
     gameMode = 'infinite';
 
-    document.getElementById('colour-btns').style.display = 'flex';
+    document.querySelector('.toolbar').style.display = 'flex';
 
     document.querySelectorAll('#colour-btns button').forEach(btn => {
         btn.classList.toggle('active', parseInt(btn.dataset.n) === colourNum);

@@ -1,9 +1,9 @@
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
 const COLOURS = {
-    card: '#f8fafc',
-    ink: '#111827',
-    muted: '#64748b',
+    card: '#2b2650',
+    ink: '#f2eefc',
+    muted: '#a79fc9',
 };
 
 const START_SEQUENCE = [
@@ -83,7 +83,7 @@ function renderScene(sceneData, mount) {
     bg.setAttribute('height', '96');
     bg.setAttribute('rx', '16');
     bg.setAttribute('fill', COLOURS.card);
-    bg.setAttribute('stroke', 'rgba(17, 24, 39, 0.08)');
+    bg.setAttribute('stroke', 'rgba(255, 255, 255, 0.10)');
     bg.setAttribute('stroke-width', '2');
     svg.appendChild(bg);
 
@@ -95,7 +95,7 @@ function renderScene(sceneData, mount) {
         frame.setAttribute('height', '64');
         frame.setAttribute('rx', '8');
         frame.setAttribute('fill', 'none');
-        frame.setAttribute('stroke', 'rgba(17, 24, 39, 0.30)');
+        frame.setAttribute('stroke', 'rgba(255, 255, 255, 0.32)');
         frame.setAttribute('stroke-width', '2');
         frame.setAttribute('stroke-dasharray', sceneData.frameStyle === 'dashed' ? '4 4' : '0');
         svg.appendChild(frame);
@@ -950,13 +950,13 @@ function loadPuzzle(difficulty) {
 function startPuzzleMode() {
     gameMode = 'start';
     startIndex = 0;
-    document.getElementById('difficulty-btns').style.display = 'none';
+    document.getElementById('difficulty-toolbar').style.display = 'none';
     loadPuzzle(START_SEQUENCE[startIndex]);
 }
 
 function startInfiniteMode() {
     gameMode = 'infinite';
-    document.getElementById('difficulty-btns').style.display = 'flex';
+    document.getElementById('difficulty-toolbar').style.display = 'flex';
     document.querySelectorAll('#difficulty-btns button').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.difficulty === currentDifficulty);
     });
